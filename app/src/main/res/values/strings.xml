@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up1">Sign Up</string>
+    <string name="enter_phone_number">Enter Phone number</string>
+    <string name="enter_password1">Enter Password</string>
+    <string name="enter_email1">Enter Email</string>
+    <string name="enter_phone_number1">Enter Phone number</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="log_in">Log in</string>
+    >
+
+</resources>
