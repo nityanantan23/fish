@@ -1,60 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
-        <style name="Theme.App" parent="Theme.MaterialComponents.*">
-            ...
-            <!-- Having the custom outlined text field as the default style. -->
-            <item name="textInputStyle">@style/Widget.App.TextInputLayout.OutlinedBox</item>
-        </style>
-
-        <style name="Widget.App.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-            <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputEditText.FilledBox</item>
-            <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
-            <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.TextInputLayout.FilledBox</item>
-            <item name="hintTextColor">@null</item>
-            <item name="android:textColorHint">@null</item>
-            <item name="hintTextAppearance">@style/TextAppearance.App.HintText</item>
-            <item name="boxBackgroundColor">@null</item>
-        </style>
-
-        <style name="Widget.App.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputEditText.OutlinedBox</item>
-            <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
-            <item name="hintTextColor">@null</item>
-            <item name="android:textColorHint">@null</item>
-            <item name="hintTextAppearance">@style/TextAppearance.App.HintText</item>
-        </style>
-
-        <style name="ThemeOverlay.App.TextInputEditText" parent="ThemeOverlay.MaterialComponents.TextInputEditText.*">
-            <item name="colorPrimary">@color/shrine_pink_100</item>
-            <item name="colorSecondary">@color/shrine_pink_50</item>
-            <item name="colorOnSecondary">@color/shrine_pink_900</item>
-            <item name="colorSurface">#FFFBFA</item>
-            <item name="colorOnSurface">@color/shrine_pink_900</item>
-            <item name="colorError">@color/shrine_red_700</item>
-            <item name="colorOnError">#FFFBFA</item>
-            <item name="colorControlActivated">@color/shrine_pink_900</item>
-        </style>
-
-        <style name="ThemeOverlay.App.TextInputEditText.FilledBox" parent="ThemeOverlay.App.TextInputEditText">
-            <item name="editTextStyle">@style/Widget.MaterialComponents.TextInputEditText.FilledBox</item>
-        </style>
-
-        <style name="ThemeOverlay.App.TextInputEditText.OutlinedBox" parent="ThemeOverlay.App.TextInputEditText">
-            <item name="editTextStyle">@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox</item>
-        </style>
-
-        <style name="TextAppearance.App.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
-            <item name="android:textColor">@color/shrine_pink_900</item>
-        </style>
-
-        <style name="ShapeAppearanceOverlay.App.TextInputLayout.FilledBox" parent="ShapeAppearance.App.SmallComponent">
-            <item name="cornerSizeBottomLeft">@dimen/mtrl_textinput_box_corner_radius_small</item>
-            <item name="cornerSizeBottomRight">@dimen/mtrl_textinput_box_corner_radius_small</item>
-        </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
-
 
 
 </resources>

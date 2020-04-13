@@ -42,6 +42,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390461857339:android:998248d4083284dcc0061e",
+        "android_client_info": {
+          "package_name": "com.fish.efish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390461857339-m5f3s5v5g3rr921507re02gethksegje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBowO2eRohXi-5feTGbs0tFp67ObcYG_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390461857339-m5f3s5v5g3rr921507re02gethksegje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

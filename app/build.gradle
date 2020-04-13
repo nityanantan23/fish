@@ -30,20 +30,24 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.firebase:firebase-analytics:17.2.3'
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
-    implementation 'com.firebaseui:firebase-ui-database:6.2.0'
-    implementation 'com.firebaseui:firebase-ui-firestore:6.2.0'
-    implementation 'com.firebaseui:firebase-ui-storage:6.2.0'
     implementation 'com.github.GrenderG:Toasty:1.4.2'
     implementation 'com.google.android.material:material:1.1.0'
     testImplementation 'junit:junit:4.12'
-    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
-    implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
-    implementation 'org.tensorflow:tensorflow-lite-support:0.0.0-nightly'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.android.material:material:1.1.0'
+
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+
+
+    implementation('org.tensorflow:tensorflow-lite:2.1.0') { changing = true }
+    implementation('org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly') { changing = true }
+    implementation('org.tensorflow:tensorflow-lite-support:0.0.0-nightly') { changing = true }
 }

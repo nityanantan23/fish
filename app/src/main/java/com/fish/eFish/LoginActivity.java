@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user = auth.getCurrentUser();
                                 if (user.isEmailVerified()){
                                     Toast.makeText(getApplicationContext(),"Email verified",Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getApplicationContext(),ProfileActivity.class);
+                                    Intent i = new Intent(getApplicationContext(),activity_fisherman_details.class);
                                     startActivity(i);
 
 
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
         }
-    };
+    }
 
 
 
@@ -96,9 +96,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toasty.success(getApplicationContext(),"Reset Email sent to "+ emailAddress,Toast.LENGTH_SHORT).show();
-                        } else {
-                            return;
-
                         }
                     }
                 });
