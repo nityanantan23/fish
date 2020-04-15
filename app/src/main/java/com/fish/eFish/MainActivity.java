@@ -8,6 +8,7 @@ import android.view.View;
 
 
 import com.firebase.ui.auth.AuthUI;
+import com.fish.eFish.camera.CameraActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
@@ -41,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         public void opendetails (View view) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+    }
+
+    public void opencamera(View view) {
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivity(intent);
     }
 
 

@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/background">
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:layout_width="146dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="211dp"
+        android:background="@drawable/button"
         android:onClick="SignIn"
         android:text="@string/log_in" />
 
@@ -46,6 +48,8 @@
         android:hint="Enter Password"
         android:inputType="textPassword" />
 
+
+
     <Button
         android:id="@+id/button5"
         style="@android:style/Widget.Material.Button.Borderless.Colored"
@@ -55,18 +59,12 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="346dp"
+        android:backgroundTint="#FFFFFF"
         android:onClick="ResetPassword"
-        android:text="Forgot password" />
+        android:text="Forgot password"
+        android:textColor="#FFFFFF" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="hint" />
-    </com.google.android.material.textfield.TextInputLayout>
 
 
 </RelativeLayout>

@@ -12,44 +12,64 @@
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="wrap_content"
+            android:layout_width="166dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="155dp"
-            android:layout_marginBottom="232dp"
+            android:layout_marginEnd="114dp"
+            android:layout_marginBottom="216dp"
+            android:background="@drawable/background"
             android:onClick="Createuser"
-            android:text="@string/sign_up" />
+            android:text="@string/sign_up"
+            android:textColor="#FFFFFF"
+            />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="59dp"
+            android:layout_marginEnd="134dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Register"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button3"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="56dp"
+            android:autofillHints=""
+            android:backgroundTintMode="screen"
+            android:ems="10"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <EditText
+            android:id="@+id/editText4"
+            style="@android:style/Widget.Holo.AutoCompleteTextView"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText5"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="48dp"
+            android:autofillHints=""
+            android:backgroundTintMode="screen"
+            android:ems="10"
+            android:hint="@string/enter_email"
+            android:inputType="textEmailAddress"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColorHighlight="#FFF" />
+
 
     </RelativeLayout>
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="366dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="509dp"
-        android:autofillHints=""
-        android:backgroundTintMode="screen"
-        android:ems="10"
-        android:hint="@string/enter_email"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="366dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="437dp"
-        android:autofillHints=""
-        android:backgroundTintMode="screen"
-        android:ems="10"
-        android:hint="@string/enter_password"
-        android:inputType="textPassword" />
 
 
 </RelativeLayout>
