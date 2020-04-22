@@ -34,10 +34,12 @@ public class LoginActivity extends AppCompatActivity {
         mail = findViewById(R.id.editText2);
         pass = findViewById(R.id.editText);
 
+
     }
 
     public void SignIn(View view){
         final FirebaseUser User = auth.getCurrentUser();
+
         if (mail.getText().toString().isEmpty() || pass.getText().toString().isEmpty()){
 
             Toast.makeText(getApplicationContext(),"Blank space",Toast.LENGTH_SHORT).show();
@@ -57,7 +59,8 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user = auth.getCurrentUser();
                                 if (user.isEmailVerified()){
                                     Toast.makeText(getApplicationContext(),"Email verified",Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getApplicationContext(),activity_fisherman_details.class);
+
+                                    Intent i = new Intent(getApplicationContext(),HompageActivity.class);
                                     startActivity(i);
 
 

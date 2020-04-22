@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,6 +26,8 @@ import java.util.Map;
 import es.dmoral.toasty.Toasty;
 
 public class activity_fisherman_details extends AppCompatActivity {
+    private static final String TAG = "Fisherman_details";
+
 
     EditText Name, Address, PhoneNumber;
 
@@ -47,23 +50,27 @@ public class activity_fisherman_details extends AppCompatActivity {
             String Name1 = Name.getText().toString().trim();
             String Address1 = Address.getText().toString().trim();
             String PhoneNumber1 = PhoneNumber.getText().toString().trim();
-//            FirebaseFirestore db = FirebaseFirestore.getInstance();
-//
-//            Map<String, Object> user = new HashMap<>();
-//            user.put("Seller_name", Name1);
-//            user.put("Seller_address", Address1);
-//            user.put("phone_number",PhoneNumber1);
-//
-//            db.collection("Fish")
-//                    .add(user)
-//                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                        @Override
-//                        public void onSuccess(DocumentReference documentReference) {
-//                            Log.d(Tag, "")
-//
-//                        }
-//                    })
-//
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            Map<String, Object> user = new HashMap<>();
+            user.put("Seller_name", Name1);
+            user.put("Seller_address", Address1);
+            user.put("phone_number",PhoneNumber1);
+
+            db.collection("Fish")
+                    .add(user)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        }
+                    })
+            .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "Error adding document", e);
+            }
+        });
 
             Intent i = new Intent(getApplicationContext(),HompageActivity.class);
             startActivity(i);

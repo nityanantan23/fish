@@ -37,4 +37,10 @@ public class ProfileActivity extends AppCompatActivity {
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
+    public void openprofile(View view){
+        auth.signOut();
+        finish();
+        Intent i = new Intent(this,ProfileActivity.class);
+        startActivity(i);
+    }
 }

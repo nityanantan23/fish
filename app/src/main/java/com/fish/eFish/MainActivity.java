@@ -8,13 +8,14 @@ import android.view.View;
 
 
 import com.firebase.ui.auth.AuthUI;
-import com.fish.eFish.camera.CameraActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth auth;
+
 
     List<AuthUI.IdpConfig> providers = Arrays.asList(
             new AuthUI.IdpConfig.EmailBuilder().build(),
@@ -28,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        auth= FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            startActivity(new Intent(MainActivity.this,HompageActivity.class));
+            finish();
+        }
     }
 
     public void openRegister(View view) {
@@ -42,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
         public void opendetails (View view) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-    }
-
-    public void opencamera(View view) {
-        Intent intent = new Intent(this, CameraActivity.class);
-        startActivity(intent);
     }
 
 
