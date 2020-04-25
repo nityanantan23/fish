@@ -1,5 +1,5 @@
 0 Tuna
-1 Tilapia 
-2 Stereolepis gigas (rare fish)
-3 Thymichthys politus (rare fish)
-4 Zoogoneticus tequila(Tequila Splitfin) (rare fish)
+1 Tilapia
+2 Thymichthys politus (rare fish)
+3 Zoogoneticus tequila(Tequila Splitfin) (rare fish)
+4 Atlantic_halibut

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,12 @@ public class LoginActivity extends AppCompatActivity {
         pass = findViewById(R.id.editText);
 
 
+
+        SharedPreferences sharedPreferences = getSharedPreferences("ok", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String name = sharedPreferences.getString("ID", "");
+
     }
 
     public void SignIn(View view){
@@ -54,17 +61,23 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()){
 
 
-                                User.sendEmailVerification();
-                                Toasty.success(getApplicationContext(),"Verification email is sent to "+ User.getEmail(),Toast.LENGTH_SHORT).show();
+
                                 FirebaseUser user = auth.getCurrentUser();
                                 if (user.isEmailVerified()){
-                                    Toast.makeText(getApplicationContext(),"Email verified",Toast.LENGTH_SHORT).show();
 
+//                                    SharedPreferences sharedPreferences = getSharedPreferences("ok", MODE_PRIVATE);
+//                                    SharedPreferences.Editor mEditor = sharedPreferences.edit();
+//                                    mEditor.putString("ID",email);
+//                                    mEditor.apply();
+
+                                    Toast.makeText(getApplicationContext(),"Email verified",Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(getApplicationContext(),HompageActivity.class);
                                     startActivity(i);
 
 
                                 } else {
+                                    User.sendEmailVerification();
+                                    Toasty.success(getApplicationContext(),"Verification email is sent to "+ User.getEmail(),Toast.LENGTH_SHORT).show();
                                     Toast.makeText(getApplicationContext(),"waiting for verification",Toast.LENGTH_SHORT).show();
 
                                 }

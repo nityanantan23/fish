@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 
 import com.firebase.ui.auth.AuthUI;
@@ -31,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         auth= FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
+            Toast.makeText(getApplicationContext(),""+auth.getCurrentUser(),Toast.LENGTH_LONG).show();
             startActivity(new Intent(MainActivity.this,HompageActivity.class));
+
             finish();
         }
     }

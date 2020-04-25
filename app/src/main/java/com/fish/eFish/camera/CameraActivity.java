@@ -47,9 +47,8 @@ import com.fish.eFish.tflite.Classifier.Recognition;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.nio.ByteBuffer;
 import java.util.List;
-
-
-
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public abstract class CameraActivity extends AppCompatActivity
@@ -521,8 +520,12 @@ public abstract class CameraActivity extends AppCompatActivity
     }
   }
 
+
+
+
   @UiThread
   protected void showResultsInBottomSheet(List<Recognition> results) {
+
     if (results != null && results.size() >= 3) {
 
       Recognition recognition = results.get(0);
@@ -536,6 +539,9 @@ public abstract class CameraActivity extends AppCompatActivity
         if(recognition.getConfidence()<0.95f){
           result_text.setText("show me fishes");
         }
+
+
+
         if(recognition.getConfidence()>0.95f){
           result_text.setText(recognition.getTitle());
            Fish_name = recognition.getTitle();

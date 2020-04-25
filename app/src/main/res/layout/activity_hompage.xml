@@ -38,7 +38,7 @@
         android:layout_marginBottom="212dp"
         android:background="@drawable/button"
         android:onClick="openprofile"
-        android:text="Account Details"
+        android:text="Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

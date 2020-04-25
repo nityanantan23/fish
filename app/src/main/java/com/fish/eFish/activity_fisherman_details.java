@@ -52,6 +52,12 @@ public class activity_fisherman_details extends AppCompatActivity {
             String PhoneNumber1 = PhoneNumber.getText().toString().trim();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+//            String id = db.collection("Fish").document(mCurrentUserId).collection("my-chats")
+//                    .document().getId();
+//            mWhammyUsersCollection.document(mCurrentUserId).collection("my-chats")
+//                    .document(id).set(myChatFields)
+//                    .addOnSuccessListener(/* ... */);
+
             Map<String, Object> user = new HashMap<>();
             user.put("Seller_name", Name1);
             user.put("Seller_address", Address1);
