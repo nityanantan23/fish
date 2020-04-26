@@ -19,6 +19,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
@@ -47,6 +48,15 @@ public  class HompageActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
         System.out.println(user.getEmail());
 
+        Intent i= getIntent();
+        Bundle b = i.getExtras();
+        if(b!=null)
+        {
+            ArrayList j =(ArrayList) b.get("key");
+            System.out.println(j);
+
+        }
+
 //        SharedPreferences.Editor mEditor = sharedPreferences.edit();
 //        mEditor.putString("ID",email);
 //        mEditor.apply();
@@ -64,21 +74,21 @@ public  class HompageActivity extends AppCompatActivity {
 
 
 
-        db.collection("Fish").document(user.getEmail()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        db.collection("Fish").document(auth.getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 String Seller_name = documentSnapshot.getString("Seller_name");
                 String Seller_address = documentSnapshot.getString("Seller_address");
                 String phone_number = documentSnapshot.getString("phone_number");
 
-                if (Objects.requireNonNull(documentSnapshot.getData()).isEmpty()){
+                if ((documentSnapshot.getData()).isEmpty()){
                     Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
                     startActivity(i);
                     Toasty.info(getApplicationContext(), "Profile need to be updated", Toasty.LENGTH_SHORT).show();
 
 
                 } else {
-                    if (Seller_address.isEmpty() || Seller_name.isEmpty() || phone_number.isEmpty()) {
+                    if (Seller_address==null || Seller_name==null|| phone_number==null) {
                         Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
                         startActivity(i);
 
@@ -102,6 +112,14 @@ public  class HompageActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
         startActivity(i);
     }
+
+    public void openhistory(View view) {
+
+
+        Intent i = new Intent(getApplicationContext(), History.class);
+        startActivity(i);
+    }
+
 
 
 

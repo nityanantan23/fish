@@ -71,13 +71,14 @@
         android:layout_marginEnd="109dp"
         android:layout_marginBottom="20dp"
         android:ems="10"
+        android:hint="Name"
         android:inputType="textPersonName"
-        android:text="Name"
         android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/editText7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -88,9 +89,11 @@
         android:layout_marginEnd="107dp"
         android:layout_marginBottom="84dp"
         android:ems="10"
+        android:hint="Phone number"
         android:inputType="phone"
-        android:text="Phone number"
+
         android:textColor="#FFF7F7"
+        android:textColorHint="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,9 +108,12 @@
         android:layout_marginEnd="107dp"
         android:layout_marginBottom="24dp"
         android:ems="10"
+        android:hint="Address"
         android:inputType="text|textPostalAddress"
-        android:text="Address"
+
+
         android:textColor="#F4F2F2"
+        android:textColorHint="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/editText6"
         app:layout_constraintEnd_toEndOf="parent"

@@ -21,12 +21,16 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -40,12 +44,16 @@ public class fish_detail extends AppCompatActivity {
 
 
     EditText price,locations,quantity;
+    FirebaseAuth auth;
+    FirebaseUser user;
+
     TextView name;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String arr[] = Fish_name.split(" ");
      String arrayname = arr[1];
     private int locationRequestCode = 1000;
     private double wayLatitude = 0.0, wayLongitude = 0.0;
+
 
 
 
@@ -72,6 +80,9 @@ public class fish_detail extends AppCompatActivity {
         name = findViewById(R.id.fish_name);
         name.setText(arr[1]);
         String arrayname = arr[1];
+
+        auth= FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
         System.out.println(arrayname);
 
 
@@ -113,11 +124,12 @@ public class fish_detail extends AppCompatActivity {
 
         String fish_name = arr[1];
 
-        Map<String, Object> user = new HashMap<>();
-        user.put("Fish_name", fish_name);
-        user.put("Fish_location", fish_location);
-        user.put("quantity", fish_quantity);
-        user.put("Fish_Price", fish_price);
+        Map<String, Object> fishes = new HashMap<>();
+        fishes.put("Fish_name", fish_name);
+        fishes.put("Fish_location", fish_location);
+        fishes.put("quantity", fish_quantity);
+        fishes.put("Fish_Price", fish_price);
+
 
         if (arrayname.equals("Atlantic_halibut") || arrayname.equals("Thymichthys") || arrayname.equals("Zoogoneticus")) {
             Intent i = new Intent(getApplicationContext(), endangered.class);
@@ -125,26 +137,45 @@ public class fish_detail extends AppCompatActivity {
             finish();
 
         } else {
-            SharedPreferences sharedPreferences = getSharedPreferences("ok", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            String name = sharedPreferences.getString("ID", "");
-            db.collection("Fish").document(name).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            db.collection("Fish").document(auth.getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                     String Seller_name = documentSnapshot.getString("Seller_name");
                     String Seller_address = documentSnapshot.getString("Seller_address");
                     String phone_number = documentSnapshot.getString("phone_number");
 
-                    if (documentSnapshot.getString("Fish_name").length()>0){
-                        Toasty.info(getApplicationContext()," fish founded in db").show();
+//                    if (documentSnapshot.contains("Fish_name")){
+//                        Toasty.info(getApplicationContext()," fish founded in db").show();
+//
+//                    }else{
 
-                    }else{
 
-
-            db.collection("Fish").document(name).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        db.collection("Fish").document(auth.getUid()).set(fishes, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
+
+                    ArrayList<String> name=new ArrayList<String>();
+                    name.add(fish_name);
+
+                    ArrayList<String> price=new ArrayList<String>();
+                    price.add(fish_price);
+
+                    ArrayList<String> qty=new ArrayList<String>();
+                    qty.add(fish_quantity);
+
+                    Intent i = new Intent(getApplicationContext(), History.class);
+                    i.putExtra("key", name);
+
+                    i.putExtra("key1", price);
+
+                    i.putExtra("key2", qty);
+                    startActivity(i);
+
+
+
+
+
                     Log.d(TAG, "DocumentSnapshot successfully written!");
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -155,10 +186,9 @@ public class fish_detail extends AppCompatActivity {
 
             });
 
-//            Intent i = new Intent(getApplicationContext(), HompageActivity.class);
-//            startActivity(i);
+
         }
-    }
+    });
 
 
-});}}}
+};}}

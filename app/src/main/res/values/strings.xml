@@ -19,11 +19,29 @@
     <string name="nnapi">NNAPI</string>
     <string name="threads">Threads:</string>
 
+    <string-array name="name">
+        <item>Tuna</item>
+        <item>Talapia</item>
+
+    </string-array>
+
+    <string-array name="price">
+        <item>RM 16</item>
+        <item>RM 12</item>
+    </string-array>
+
+    <string-array name="quantity">
+        <item>30</item>
+        <item>15</item>
+    </string-array>
+
+
     <string name="model">Model:</string>
     <string-array name="models">
         <item>Quantized</item>
         <item>Float</item>
     </string-array>
+
 
     <string name="device">Device:</string>
     <string name="show_me_fish">Show me fish</string>

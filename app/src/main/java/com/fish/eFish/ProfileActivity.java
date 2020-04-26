@@ -10,15 +10,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import es.dmoral.toasty.Toasty;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -27,12 +35,10 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
     TextView ProfileEmail;
-    EditText seller_name,Address,number;
+    EditText seller_name,sell_Address,sell_number;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG = "Fisherman_details";
-//    SharedPreferences sharedPreferences = getSharedPreferences("ok", MODE_PRIVATE);
-//    SharedPreferences.Editor editor = sharedPreferences.edit();
-//    String name = sharedPreferences.getString("ID", "");
+
 
 
 
@@ -45,17 +51,34 @@ public class ProfileActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
 
         seller_name = findViewById(R.id.editText8);
-        Address =findViewById(R.id.editText7);
-        number =findViewById(R.id.editText6);
+        sell_Address =findViewById(R.id.editText7);
+        sell_number =findViewById(R.id.editText6);
+
 
 
         ProfileEmail =(TextView)findViewById(R.id.textView);
         ProfileEmail.setText(user.getEmail());
 
+//        db.collection("Fish").document(auth.getUid()).get()
+        DocumentReference user = db.collection("Fish").document(auth.getUid());
+        user.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()){
+                    String name = documentSnapshot.getString("Seller_name");
+                    String addres = documentSnapshot.getString("Seller_address");
+                    String phone = documentSnapshot.getString("phone_number");
+
+                    seller_name.setText(name);
+                    sell_Address.setText(addres);
+                    sell_number.setText(phone);
 
 
+                }
+        }});
+                }
 
-    }
+
 
     public void signOut(View view){
         auth.signOut();
@@ -76,25 +99,22 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void update(View view){
 
-        Map<String, Object> user = new HashMap<>();
-        user.put("Seller_name", seller_name);
-        user.put("Seller_address", Address);
-        user.put("phone_number", number);
-
-//        db.collection("Fish").document("G07skyG2lc0quzZRPHLc").set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void aVoid) {
-//                Log.d(TAG, "DocumentSnapshot successfully written!");
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.w(TAG, "Error writing document", e);
-//            }
-
-//        });
-    }
+        Map<String, Object> fishydetails = new HashMap<>();
+        fishydetails.put("Seller_name", seller_name.getText().toString());
+        fishydetails.put("Seller_address", sell_Address.getText().toString());
+        fishydetails.put("phone_number", sell_number.getText().toString());
 
 
 
-}
+
+
+        db.collection("Fish").document(auth.getUid()).set(fishydetails, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toasty.success(getApplicationContext(),"Updated", Toast.LENGTH_SHORT).show();
+
+            }
+
+        });}}
+

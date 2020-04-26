@@ -26,6 +26,7 @@
         android:layout_marginEnd="44dp"
         android:layout_marginBottom="100dp"
         android:background="@drawable/button"
+        android:onClick="openhistory"
         android:text="History"
         app:layout_constraintBottom_toTopOf="@+id/button9"
         app:layout_constraintEnd_toEndOf="parent" />

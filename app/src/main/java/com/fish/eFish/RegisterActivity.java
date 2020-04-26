@@ -70,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             Map<String, Object> user = new HashMap<>();
             user.put("email", email);
+            user.clear();
 
             auth.createUserWithEmailAndPassword(email,password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -77,14 +78,20 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 Toasty.success(getApplicationContext(),"User created succesfully!",Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                                startActivity(i);
+
+
 
                                 db.collection("Fish").document(auth.getUid()).set(user)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toasty.success(getApplicationContext(),"Register sucess",Toast.LENGTH_SHORT).show();
+                                                Toasty.success(getApplicationContext(),"Register success",Toast.LENGTH_SHORT).show();
                                             }
                                         });
+
+
 
 
 
