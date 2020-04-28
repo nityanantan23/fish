@@ -47,6 +47,8 @@ public  class HompageActivity extends AppCompatActivity {
         auth= FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         System.out.println(user.getEmail());
+        long start = System.currentTimeMillis();
+        System.out.println(start);
 
         Intent i= getIntent();
         Bundle b = i.getExtras();

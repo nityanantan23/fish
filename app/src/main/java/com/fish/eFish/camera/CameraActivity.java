@@ -51,6 +51,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import es.dmoral.toasty.Toasty;
+
 
 public abstract class CameraActivity extends AppCompatActivity
         implements OnImageAvailableListener,
@@ -524,9 +526,12 @@ public abstract class CameraActivity extends AppCompatActivity
 
 
   private Handler mHandler = new Handler();
+  private Object lock = new Object();
+
 
   @UiThread
-  protected void showResultsInBottomSheet(List<Recognition> results) {
+  protected void showResultsInBottomSheet(List<Recognition> results) throws InterruptedException {
+
 
     if (results != null && results.size() >= 3) {
 
@@ -535,44 +540,59 @@ public abstract class CameraActivity extends AppCompatActivity
 
         if (recognition.getTitle() != null)
           recognitionTextView.setText(recognition.getTitle());
-        System.out.println("name"+recognition.getTitle());
+        System.out.println("name" + recognition.getTitle());
 
-        System.out.println("namevalue"+recognition.getConfidence());
-        if(recognition.getConfidence()<0.95f){
+        System.out.println("namevalue" + recognition.getConfidence());
+        if (recognition.getConfidence() < 0.95f) {
           result_text.setText("show me fishes");
         }
 
 
-        float confidence = 0.98f;
+        float confidence = 0.95f;
 
 
-        if(recognition.getConfidence()>confidence ){
-          result_text.setText(recognition.getTitle());
-           Fish_name = recognition.getTitle();
-          Intent intent = new Intent(this, fish_detail.class);
-          startActivity(intent);
+        if (recognition.getConfidence() > confidence) {
+
+            if (recognition.getConfidence() > confidence) {
+              if (recognition.getTitle().equals("5 show me fishes")){
+                result_text.setText("show me fishes");
+//              result_text.setText(recognition.getTitle());
+
+
+              }else {
+                Fish_name = recognition.getTitle();
+                Intent intent = new Intent(this, fish_detail.class);
+                startActivity(intent);
+              }
+
+            } else {
+              result_text.setText("show me fishes");
+            }
+
+
+          if (recognition.getConfidence() != null)
+            recognitionValueTextView.setText(
+                    String.format("%.2f", (100 * recognition.getConfidence())) + "%");
         }
 
-        if (recognition.getConfidence() != null)
-          recognitionValueTextView.setText(
-                  String.format("%.2f", (100 * recognition.getConfidence())) + "%");
-      }
+        Recognition recognition1 = results.get(1);
+        if (recognition1 != null) {
+          if (recognition1.getTitle() != null)
+            recognition1TextView.setText(recognition1.getTitle());
+          if (recognition1.getConfidence() != null)
 
-      Recognition recognition1 = results.get(1);
-      if (recognition1 != null) {
-        if (recognition1.getTitle() != null) recognition1TextView.setText(recognition1.getTitle());
-        if (recognition1.getConfidence() != null)
+            recognition1ValueTextView.setText(
+                    String.format("%.2f", (100 * recognition1.getConfidence())) + "%");
+        }
 
-          recognition1ValueTextView.setText(
-                  String.format("%.2f", (100 * recognition1.getConfidence())) + "%");
-      }
-
-      Recognition recognition2 = results.get(2);
-      if (recognition2 != null) {
-        if (recognition2.getTitle() != null) recognition2TextView.setText(recognition2.getTitle());
-        if (recognition2.getConfidence() != null)
-          recognition2ValueTextView.setText(
-                  String.format("%.2f", (100 * recognition2.getConfidence())) + "%");
+        Recognition recognition2 = results.get(2);
+        if (recognition2 != null) {
+          if (recognition2.getTitle() != null)
+            recognition2TextView.setText(recognition2.getTitle());
+          if (recognition2.getConfidence() != null)
+            recognition2ValueTextView.setText(
+                    String.format("%.2f", (100 * recognition2.getConfidence())) + "%");
+        }
       }
     }
   }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -98,6 +99,13 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void update(View view){
+
+        if (TextUtils.isEmpty(seller_name.getText()) || (TextUtils.isEmpty(sell_Address.getText()) || (TextUtils.isEmpty(sell_number.getText())))) {
+
+            seller_name.setError("Name is required!");
+            sell_Address.setError("Address is required!");
+            sell_number.setError("Phone number is required!");
+        }
 
         Map<String, Object> fishydetails = new HashMap<>();
         fishydetails.put("Seller_name", seller_name.getText().toString());

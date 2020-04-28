@@ -1,6 +1,7 @@
 
 package com.fish.eFish.camera;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Typeface;
@@ -9,6 +10,8 @@ import android.os.SystemClock;
 import android.util.Size;
 import android.util.TypedValue;
 import android.widget.Toast;
+
+import com.fish.eFish.HompageActivity;
 import com.fish.eFish.R;
 import com.fish.eFish.env.BorderedText;
 import com.fish.eFish.env.Logger;
@@ -29,6 +32,9 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
   private long lastProcessingTimeMs;
   private Integer sensorOrientation;
   private Classifier classifier;
+  private long backPressedTime;
+
+
   private BorderedText borderedText;
   /** Input image size of the model along x axis. */
   private int imageSizeX;
@@ -89,7 +95,11 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
                           new Runnable() {
                             @Override
                             public void run() {
-                              showResultsInBottomSheet(results);
+                              try {
+                                showResultsInBottomSheet(results);
+                              } catch (InterruptedException e) {
+                                e.printStackTrace();
+                              }
                               showFrameInfo(previewWidth + "x" + previewHeight);
                               showCropInfo(imageSizeX + "x" + imageSizeY);
                               showCameraResolution(cropSize + "x" + cropSize);
@@ -141,5 +151,11 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
     // Updates the input image size.
     imageSizeX = classifier.getImageSizeX();
     imageSizeY = classifier.getImageSizeY();
+  }
+
+  @Override
+  public void onBackPressed() {
+    Intent i = new Intent(getApplicationContext(), HompageActivity.class);
+    startActivity(i);
   }
 }
