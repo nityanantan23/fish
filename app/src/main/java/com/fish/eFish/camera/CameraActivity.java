@@ -49,6 +49,7 @@ import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 
 public abstract class CameraActivity extends AppCompatActivity
@@ -522,6 +523,7 @@ public abstract class CameraActivity extends AppCompatActivity
 
 
 
+  private Handler mHandler = new Handler();
 
   @UiThread
   protected void showResultsInBottomSheet(List<Recognition> results) {
@@ -541,8 +543,10 @@ public abstract class CameraActivity extends AppCompatActivity
         }
 
 
+        float confidence = 0.98f;
 
-        if(recognition.getConfidence()>0.95f){
+
+        if(recognition.getConfidence()>confidence ){
           result_text.setText(recognition.getTitle());
            Fish_name = recognition.getTitle();
           Intent intent = new Intent(this, fish_detail.class);
@@ -558,6 +562,7 @@ public abstract class CameraActivity extends AppCompatActivity
       if (recognition1 != null) {
         if (recognition1.getTitle() != null) recognition1TextView.setText(recognition1.getTitle());
         if (recognition1.getConfidence() != null)
+
           recognition1ValueTextView.setText(
                   String.format("%.2f", (100 * recognition1.getConfidence())) + "%");
       }
